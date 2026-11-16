@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1024" />
+  <meta name="description" content="CITY SIGNAL 城市频率档案：一款治愈赛博风的城市能量适配测试。" />
+  <title>CITY SIGNAL｜城市频率档案</title>
+  <style>
+    :root { --ink:#edf1ff; --muted:#aeb7d6; --line:rgba(191,205,255,.18); --panel:rgba(18,27,62,.7); --navy:#090d22; --violet:#8a7dff; --mint:#7df0d1; --pink:#ff9ec7; --amber:#ffc978; }
+    *{box-sizing:border-box} html{min-height:100%;background:var(--navy)} body{min-height:100%;margin:0;color:var(--ink);font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;letter-spacing:.015em;background:radial-gradient(circle at 85% 8%,rgba(138,125,255,.24),transparent 27rem),radial-gradient(circle at 10% 84%,rgba(125,240,209,.12),transparent 28rem),#090d22;overflow-x:hidden}
+    body:before,body:after{content:"";position:fixed;pointer-events:none;z-index:0;border-radius:50%;filter:blur(1px)}body:before{width:34rem;height:34rem;left:-15rem;top:17rem;background:radial-gradient(circle,rgba(126,120,255,.16),transparent 66%)}body:after{width:26rem;height:26rem;right:-13rem;top:4rem;background:radial-gradient(circle,rgba(125,240,209,.1),transparent 68%)}
+    .grid{position:fixed;inset:0;pointer-events:none;opacity:.22;background-image:linear-gradient(rgba(166,184,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(166,184,255,.08) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,black,transparent 85%)}
+    .app{position:relative;z-index:1;width:min(100%,700px);min-height:100vh;margin:0 auto;padding:24px 18px 36px;display:flex;flex-direction:column}
+    .brand{display:flex;align-items:center;gap:10px;color:#c9d2ff;font-size:11px;letter-spacing:.18em;text-transform:uppercase}.mark{width:28px;height:28px;border:1px solid rgba(150,156,255,.9);border-radius:50%;display:grid;place-items:center;color:var(--mint);font-weight:700;font-size:12px;box-shadow:0 0 25px rgba(125,240,209,.18)}
+    .screen{display:none;flex:1;animation:rise .45s ease both}.screen.active{display:flex;flex-direction:column}@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+    .home{justify-content:center;padding:42px 2px 16px}.eyebrow{color:var(--mint);font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:18px}.hero-title{font-size:clamp(38px,10vw,64px);line-height:1.04;letter-spacing:-.055em;margin:0;max-width:9em}.hero-title em{font-style:normal;color:#a9a1ff;text-shadow:0 0 30px rgba(138,125,255,.38)}.hero-text{font-size:15px;line-height:1.8;color:var(--muted);max-width:32em;margin:22px 0 28px}.signal{margin:4px 0 30px;padding:17px 18px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,rgba(39,44,101,.72),rgba(11,16,42,.45));box-shadow:inset 0 1px rgba(255,255,255,.06)}.signal-head{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:#d7ddff;letter-spacing:.08em}.pulse{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 rgba(125,240,209,.6);animation:pulse 1.8s infinite}@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(125,240,209,0)}100%{box-shadow:0 0 0 0 rgba(125,240,209,0)}}.bars{display:flex;align-items:end;gap:4px;height:30px;margin-top:11px}.bars i{display:block;width:100%;background:linear-gradient(to top,var(--mint),#897fff);border-radius:99px;opacity:.78}.bars i:nth-child(1){height:25%}.bars i:nth-child(2){height:57%}.bars i:nth-child(3){height:34%}.bars i:nth-child(4){height:84%}.bars i:nth-child(5){height:46%}.bars i:nth-child(6){height:70%}.bars i:nth-child(7){height:28%}.bars i:nth-child(8){height:58%}.bars i:nth-child(9){height:91%}.bars i:nth-child(10){height:42%}.bars i:nth-child(11){height:68%}.bars i:nth-child(12){height:36%}
+    button{font:inherit;cursor:pointer;border:0}.primary{display:flex;align-items:center;justify-content:space-between;width:100%;padding:17px 19px;border-radius:15px;color:#081020;background:linear-gradient(100deg,#81efd3,#a9a1ff);font-weight:800;box-shadow:0 12px 34px rgba(125,240,209,.14);transition:transform .2s,box-shadow .2s}.primary:hover{transform:translateY(-2px);box-shadow:0 15px 40px rgba(125,240,209,.22)}.primary span:last-child{font-size:22px;font-weight:400}.micro{font-size:11px;color:#8994b9;text-align:center;line-height:1.65;margin:16px auto 0;max-width:34em}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:3px}.chip{font-size:11px;color:#cbd1ed;padding:7px 10px;border:1px solid var(--line);border-radius:99px;background:rgba(10,16,43,.36)}
+    .quiz{padding:23px 0 10px}.topline{display:flex;justify-content:space-between;align-items:center;margin:28px 0 10px;color:#cdd5f4;font-size:12px}.progress{height:5px;background:rgba(200,209,255,.12);border-radius:999px;overflow:hidden}.progress i{display:block;height:100%;width:5%;background:linear-gradient(90deg,var(--mint),var(--violet));border-radius:999px;transition:width .35s ease}.question-id{color:var(--mint);font-size:11px;letter-spacing:.15em;margin-top:48px;text-transform:uppercase}.question{font-size:clamp(25px,7vw,37px);line-height:1.28;letter-spacing:-.038em;margin:14px 0 26px;max-width:15em}.options{display:grid;gap:10px}.option{position:relative;text-align:left;color:#e9edff;background:rgba(22,30,70,.54);border:1px solid rgba(190,203,255,.16);border-radius:15px;padding:15px 46px 15px 17px;line-height:1.5;transition:.2s}.option:before{content:"";position:absolute;right:17px;top:50%;width:8px;height:8px;border:1px solid #aab5df;border-radius:50%;transform:translateY(-50%);transition:.2s}.option:hover{border-color:rgba(125,240,209,.7);transform:translateX(3px);background:rgba(38,51,108,.7)}.option:hover:before{background:var(--mint);box-shadow:0 0 14px var(--mint)}.back{margin-top:18px;background:transparent;color:#9ba7cf;align-self:flex-start;padding:8px 1px;font-size:13px}.back:hover{color:white}
+    .interlude{justify-content:center;text-align:center}.scanner{width:88px;height:88px;border:1px solid rgba(125,240,209,.55);border-radius:50%;margin:0 auto 22px;display:grid;place-items:center;position:relative;box-shadow:0 0 40px rgba(125,240,209,.12),inset 0 0 28px rgba(138,125,255,.12)}.scanner:after{content:"";position:absolute;width:112%;height:1px;background:var(--mint);box-shadow:0 0 14px var(--mint);animation:scan 1.5s ease-in-out infinite}@keyframes scan{0%,100%{transform:translateY(-29px);opacity:.5}50%{transform:translateY(29px);opacity:1}}.scanner span{color:var(--mint);font-size:25px}.interlude h2{letter-spacing:-.04em;font-size:30px;margin:0 0 10px}.interlude p{line-height:1.8;color:var(--muted);margin:0 auto;max-width:27em}
+    .result{padding-top:34px}.result-label{font-size:11px;letter-spacing:.16em;color:var(--mint)}.result-title{font-size:clamp(39px,10vw,58px);letter-spacing:-.06em;line-height:1.03;margin:12px 0}.result-title small{font-size:.37em;letter-spacing:.02em;color:#bec6e6;vertical-align:middle;margin-left:7px}.result-intro{color:#cbd2eb;line-height:1.75;margin:0 0 19px}.frequency{border:1px solid var(--line);background:linear-gradient(132deg,rgba(47,46,109,.68),rgba(14,19,48,.75));border-radius:19px;padding:17px;margin:17px 0 14px}.frequency-top{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:#c9d2f0;margin-bottom:12px}.meter{height:7px;border-radius:99px;background:rgba(211,220,255,.13);overflow:hidden}.meter i{display:block;width:83%;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--mint),var(--violet),var(--pink))}.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}.result-card{min-height:108px;border:1px solid var(--line);border-radius:16px;padding:15px;background:rgba(17,24,57,.55)}.result-card h3{font-size:11px;color:var(--mint);letter-spacing:.1em;margin:0 0 10px}.result-card p{margin:0;color:#d7dcef;line-height:1.58;font-size:13px}.wide{grid-column:1/-1}.city-tags{display:flex;flex-wrap:wrap;gap:7px}.city-tags span{background:rgba(147,136,255,.13);border:1px solid rgba(169,161,255,.25);border-radius:99px;padding:5px 9px;font-size:12px;color:#d9d5ff}.quote{font-size:17px;line-height:1.55;letter-spacing:-.02em;color:white;padding:18px 2px 4px;margin:4px 0 13px}.quote:before{content:"“";color:var(--pink);font-size:34px;vertical-align:-12px;margin-right:5px}.actions{display:grid;gap:10px;margin-top:17px}.secondary{width:100%;padding:14px;border:1px solid var(--line);border-radius:14px;background:rgba(17,24,57,.45);color:#dae0f8}.secondary:hover{background:rgba(42,51,103,.6)}.disclaimer{color:#7e89ad;text-align:center;font-size:10px;line-height:1.65;margin:19px 10px 0}.footer{font-size:10px;color:#6f7aa0;text-align:center;margin-top:auto;padding-top:25px;letter-spacing:.06em}
+    .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,110px);background:#edf1ff;color:#0a1026;padding:11px 15px;border-radius:99px;font-size:13px;font-weight:700;box-shadow:0 13px 35px rgba(0,0,0,.35);transition:.35s;z-index:4;white-space:nowrap}.toast.show{transform:translate(-50%,0)}
+    @media (min-width:701px){.app{padding-top:28px}.home{padding-top:65px}.question{margin-top:18px}.options{grid-template-columns:1fr 1fr}.option{min-height:78px;display:flex;align-items:center}.option:last-child:nth-child(odd){grid-column:span 2}.result-grid{grid-template-columns:1fr 1fr 1fr}.wide{grid-column:span 3}}
+    @media (max-width:380px){.app{padding:20px 14px 30px}.question{font-size:26px}.option{padding:13px 39px 13px 14px}.hero-title{font-size:38px}}
+    .chips{margin-bottom:20px}.option.selected{border-color:var(--mint);background:rgba(38,65,90,.85)}.option.selected:before{background:var(--mint)}
+    #next{margin-top:20px}.primary:disabled{opacity:.4;cursor:default;transform:none}button:focus-visible{outline:3px solid var(--mint);outline-offset:4px}
+    #shareText{width:100%;min-height:140px;margin-top:15px;padding:14px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:14px;font:inherit;line-height:1.6}
+    .result-title small{display:block;line-height:1.6;margin:12px 0 0}.micro:empty{display:none}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <noscript><p style="padding:24px;color:white">当前打开方式不能运行测试。请用支持 JavaScript 的浏览器打开此 HTML 文件；文件预览窗口可能只能显示页面。</p></noscript>
+  <div class="grid"></div>
+  <main class="app" aria-live="polite">
+    <div class="brand"><div class="mark">C</div><span>City Signal · 01</span></div>
+    <section id="home" class="screen home active">
+      <div class="eyebrow">城市频率档案 / 20 questions</div>
+      <h1 class="hero-title">你会在怎样的城市里，<em>重新发光？</em></h1>
+      <p class="hero-text">这不是给城市排座次，而是帮你听见自己此刻更需要机会、平衡、恢复、探索、归属，还是一段安静蓄力的时间。</p>
+      <div class="signal"><div class="signal-head"><span>正在接收你的城市信号</span><span class="pulse" aria-label="信号接收中"></span></div><div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+      <p class="micro" id="storageNotice" role="status"></p><div class="chips"><span class="chip">约 3 分钟</span><span class="chip">即时生成结果</span><span class="chip">治愈赛博结果卡</span></div>
+      <button class="primary" id="start" type="button"><span>开始校准我的城市频率</span><span>→</span></button>
+      <p class="micro">趣味自我探索，仅供生活方式参考。它不会替你做出迁居、求职或任何重要决定。</p>
+    </section>
+    <section id="quiz" class="screen quiz">
+      <div class="topline"><span id="counter">01 / 20</span><span>信号采集中</span></div><div class="progress"><i id="progressBar"></i></div>
+      <div class="question-id" id="questionId">SIGNAL 01 · 城市初印象</div><h2 class="question" id="questionText"></h2><div class="options" id="options"></div><button class="primary" id="next" type="button" disabled><span id="nextLabel">下一题</span><span>→</span></button><p class="micro" id="submitHint"></p><button class="back" id="back" type="button">← 回到上一题</button>
+    </section>
+    <section id="result" class="screen result">
+      <div class="result-label">你的城市档案已生成</div><h2 class="result-title" id="resultTitle"></h2><p class="result-intro" id="resultIntro"></p>
+      <div class="frequency"><div class="frequency-top"><span>本次主要倾向占比</span><strong id="frequencyScore"></strong></div><div class="meter"><i id="resultMeter"></i></div><p class="micro" id="rankNote"></p></div>
+      <div class="result-grid"><article class="result-card"><h3>你需要的场域</h3><p id="environment"></p></article><article class="result-card"><h3>城市副频</h3><p id="secondaryType"></p></article><article class="result-card"><h3>参考城市方向</h3><div class="city-tags" id="cities"></div></article><article class="result-card wide"><h3>避坑提示</h3><p id="warning"></p></article></div>
+      <p class="quote" id="quote"></p><div class="actions"><button class="primary" id="share" type="button"><span>分享我的结果</span><span>↗</span></button></div><textarea id="shareText" aria-label="长按复制结果文字" readonly hidden></textarea><p class="micro" id="saveNotice" role="status"></p><p class="disclaimer">完成后可在当前浏览器回看结果。本测试为趣味自我探索与生活方式参考，不构成心理诊断、职业建议、迁居建议或任何结果保证。实际选择请结合岗位、收入、住房、家庭与个人情况判断。</p>
+    </section>
+    <div class="footer">CITY SIGNAL · FIND YOUR LIVABLE FREQUENCY</div>
+  </main><div class="toast" id="toast" role="status"></div>
+  <script>
+    const types={
+      N:{name:'霓虹跃迁者',tag:'机会 / 速度 / 岗位集中',intro:'你需要的不是“轻松”，而是能把能力放大的场域。高密度的信息、人群和项目会让你累，但也会让你兴奋。',environment:'一线或强产业城市；行业集中、人才流动快的区域。',cities:['上海','深圳','北京'],warning:'别只被城市滤镜吸引。如果工作不积累能力、通勤过长、租房超过承受线，机会会变成持续消耗。',quote:'我不怕霓虹太亮，我要让自己也成为光。'},
+      G:{name:'光合生长者',tag:'平衡 / 生长 / 日常感',intro:'你要的不是躺平，也不是永远冲刺。一个能让你稳定成长、下班后仍有力气生活的城市，最容易让你变得更好。',environment:'新一线或强省会；产业机会足、生活半径舒展、公共空间成熟。',cities:['杭州','成都','武汉'],warning:'不要把“便利”误认为“适配”。如果职业赛道很窄，再舒服的生活也可能让你焦虑。',quote:'我想向上生长，也想晒到自己的太阳。'},
+      L:{name:'低耗充电者',tag:'恢复 / 安静 / 低通勤',intro:'你对环境很敏感。嘈杂、拥挤、长通勤和无效社交会迅速抽干你的能量；你需要的是更高质量的恢复空间。',environment:'生活成本可控、通勤短、绿地和社区感更强的城市或近郊。',cities:['苏州','厦门','青岛'],warning:'别为了证明自己“能吃苦”而长期留在高耗能环境。恢复能力下降后，任何机会都会失色。',quote:'我不是慢，我在把能量留给真正重要的事。'},
+      M:{name:'灵感游牧者',tag:'自由 / 文化 / 新鲜感',intro:'你最怕的不是忙，而是生活失去新鲜感。你需要可探索的街区、自然或文化连接，也需要一点不被单一路径定义的自由。',environment:'有文化场景、自然资源、创意社群或远程工作可能性的城市。',cities:['大理','厦门','重庆'],warning:'不要把“离开”当作唯一答案。新城市可以带来灵感，但不会自动解决收入、关系和自律的问题。',quote:'我要的不是逃离，而是一种能继续好奇的生活。'},
+      H:{name:'稳定筑巢者',tag:'归属 / 关系 / 可预期',intro:'你会在可靠的关系和可预期的生活里变得更勇敢。不是没有野心，而是你需要一个能接住自己的地方，才敢往更远处走。',environment:'家庭与伴侣支持较强、生活成本相对可控、社区感明显的城市。',cities:['南京','长沙','合肥'],warning:'别因为怕失去熟悉感，就拒绝每一次成长机会。适合你的稳定，应该扩大选择，而不是缩小世界。',quote:'有地方可回的人，才更敢往前走。'},
+      S:{name:'静默升级者',tag:'蓄力 / 技能 / 选择权',intro:'你不迷信立刻发光，更看重给未来攒下什么。你需要的是能控制成本、沉下心积累技能，并在关键时刻给你选择权的地方。',environment:'有产业入口、成本合理、适合专注工作的城市或阶段据点。',cities:['武汉','长沙','苏州'],warning:'长期准备却不行动，会让“储备”变成拖延。请给自己一个可见的里程碑。',quote:'我正在安静地，为未来攒一张更自由的车票。'}
+    };
+    const questions=[
+      ['新到一座城市，最让你兴奋的是：',['行业活动、公司与机会都很密集','工作发展不错，周末还能有自己的生活','通勤不长、街道安静、回家就能恢复','有展览、山海、独立店和新的灵感','身边有熟人，能很快建立稳定关系','有足够时间学技能、攒钱和做长期计划']],
+      ['你对“周末”的理想想象更接近：',['见人、看展、参加一场有用的活动','运动、逛街、和朋友吃顿舒服的饭','睡到自然醒，在附近慢慢散步','临时买票去另一个地方，找陌生体验','回家吃饭或和固定的人待在一起','复盘、学习、做一件让未来轻松的事']],
+      ['面对高房租，你的第一反应是：',['如果能换来机会，可以接受一段时间','要看收入和生活质量是否仍然平衡','太高会直接消耗我，不值得','宁愿住小一点，也要住在有氛围的地方','希望离家人或已有支持系统更近','能省则省，把钱优先留给技能和储蓄']],
+      ['工作最能让你有成就感的状态是：',['节奏快、项目大、能被看见','成长稳定，工作和生活都在变好','边界清晰，下班后真的能下班','有创意、变化和自主表达空间','团队可靠，关系舒服、合作长期','能积累可迁移的硬技能和作品']],
+      ['你在陌生人很多的环境里通常：',['会主动观察资源和链接机会','先熟悉，再慢慢融入','很快感到耗电，想回到小圈子','反而觉得新鲜，有故事感','希望尽快找到可信任的人','保持距离，把重点放在自己身上']],
+      ['若有一个月完全自由安排，你会：',['去机会最多的地方密集见人、试项目','在一座便利又舒服的城市慢慢体验','找安静住处，把生活调回正常节奏','旅居几座城市，跟着好奇心走','回到熟悉的地方陪伴重要的人','制定学习计划，把一个技能学到能变现']],
+      ['下面哪种疲惫最让你受不了：',['机会擦肩而过的遗憾','只有工作、没有生活的失衡','地铁拥挤、噪音和无效社交','每天一模一样、没有新鲜感','长期没有归属感和支持','看不到成长，钱和能力都没有积累']],
+      ['朋友对你最常见的评价是：',['有野心，行动快','会经营生活，也很会安排','温和，需要自己的空间','有趣，点子多，不太按常规','重感情，可靠，有家的感觉','清醒、自律，擅长长期主义']],
+      ['你更愿意把钱花在：',['课程、社群、活动和职业机会','舒服的房子、运动和稳定体验','提升居住舒适度和独处质量','旅行、展览、独特的小店与体验','家人、朋友和让关系更稳的事情','证书、设备、储蓄和投资自己']],
+      ['你希望每天出门时，城市给你的感觉是：',['今天可能发生大事','我能过好今天，也能走向更远','不用太用力，也可以活得舒服','随时可以拐进一段新剧情','这里有人和地方接得住我','今天的努力都在为以后打基础']],
+      ['当身边人都在冲刺时，你会：',['被激发，想跑得更快','选择自己的节奏，但不想掉队','有压力，希望环境慢一些','想换条不一样的路','会先确认身边的关系是否稳住','安静拉开差距，用结果说话']],
+      ['你对“稳定”的理解是：',['有随时跳去更高平台的能力','收入、生活和成长都不失衡','日常可控，情绪能恢复','有随时重启生活的自由','有可依靠的人和长期关系','有储蓄、技能和长期选择权']],
+      ['理想中的通勤是：',['远一点没关系，沿路有机会和热闹','30–45 分钟，方便但不窒息','15–30 分钟，最好能走路或骑车','路上能看到有趣街区、河岸或店铺','离家人、伴侣或固定圈子更近','尽量节省时间，把时间还给成长计划']],
+      ['如果一次跳槽收入大涨，但压力也翻倍：',['会去，正好验证自己的上限','会比较再决定，不能牺牲所有生活','大概率不去，健康和节奏更重要','取决于是否有创作和自主空间','会和重要的人认真商量','若能沉淀关键能力，会当阶段任务']],
+      ['你更想住在：',['产业与人群高度聚集的核心区附近','商业便利、有公园和好咖啡的成熟社区','有绿地、安静、租金不焦虑的地方','有老街、艺术空间、自然景观的区域','离亲友不远、邻里有温度的社区','性价比高、方便学习和专注工作的区域']],
+      ['你最想从一座城市得到：',['更大的舞台','更好的日常','更低的消耗','更新鲜的自己','更稳的归属','更厚的底牌']],
+      ['现在的你更接近哪个阶段：',['冲刺期：我想主动争取下一次跃迁','生长期：我想变好，也想过得像自己','恢复期：我需要先把能量补回来','探索期：我还在寻找真正想要的生活','安定期：我希望长期关系和生活慢慢落地','储备期：我想为下一次选择积累筹码']],
+      ['选择城市时，最不能妥协的是：',['行业机会','发展与生活的整体平衡','身体和情绪的恢复空间','自由度、文化和自然连接','家庭、伴侣或朋友的支持','长期成本与能力积累']],
+      ['当你对生活迷茫时，你会更需要：',['看见更大的世界和更多可能','回到规律、健康、有反馈的生活','安静下来，减少外界噪音','换个环境，获得新灵感','找信任的人好好聊聊','拆解目标，做一张可执行的计划']],
+      ['请选一句最像你此刻的心声：',['我不怕卷，我怕没有值得卷的机会。','我想成长，但不想把生活过丢。','我不是懒，我只是被高耗能生活榨干了。','我还没找到真正让我发光的场景。','我努力的意义，是和重要的人过上安稳日子。','我不急着赢，我在给未来攒选择权。']]
+    ];
+    const codes=['N','G','L','M','H','S'],storageKey='city-signal-offline-v1',screens=['home','quiz','result'];
+    const $=s=>document.querySelector(s);
+    let index=0,answers=[],completed=false,storageAvailable=true,toastTimer;
+    function show(id){screens.forEach(name=>$('#'+name).classList.toggle('active',name===id));window.scrollTo(0,0)}
+    function validChoices(value){return Array.isArray(value)&&value.length<=questions.length&&value.every(x=>Number.isInteger(x)&&x>=0&&x<codes.length)}
+    function readSaved(){
+      try{const data=JSON.parse(localStorage.getItem(storageKey)||'null');
+        if(!data||data.version!==1||!validChoices(data.answers)||(data.completed&&data.answers.length!==questions.length))return null;
+        return data;
+      }catch{return null}
+    }
+    function persist(){
+      try{localStorage.setItem(storageKey,JSON.stringify({version:1,answers,index,completed}));storageAvailable=true}catch{storageAvailable=false}
+      const message=storageAvailable?'':'当前打开方式不能保存进度。关闭后可能丢失结果，完成后请截图保存。';
+      $('#storageNotice').textContent=message;
+      $('#saveNotice').textContent=completed?(storageAvailable?'本次结果已保存在当前浏览器，可再次打开回看。':message):'';
+    }
+    function render(){
+      const [question,options]=questions[index];
+      $('#counter').textContent=String(index+1).padStart(2,'0')+' / '+questions.length;
+      $('#progressBar').style.width=((index+1)/questions.length*100)+'%';
+      $('#questionId').textContent='SIGNAL '+String(index+1).padStart(2,'0')+' · 城市频率校准';
+      $('#questionText').textContent=question;$('#options').innerHTML='';
+      options.forEach((text,choice)=>{
+        const button=document.createElement('button');
+        button.type='button';button.className='option'+(answers[index]===choice?' selected':'');
+        button.setAttribute('aria-pressed',String(answers[index]===choice));button.textContent=text;
+        button.addEventListener('click',()=>{if(completed)return;answers[index]=choice;persist();render();$('#options').children[choice].focus({preventScroll:true})});
+        $('#options').appendChild(button);
+      });
+      $('#back').style.visibility=index?'visible':'hidden';
+      $('#next').disabled=!Number.isInteger(answers[index]);
+      $('#nextLabel').textContent=index===questions.length-1?'提交并查看结果':'下一题';
+      $('#submitHint').textContent=index===questions.length-1?'提交后本次答案将锁定，请确认后再提交。':'';
+    }
+    function calculate(){
+      const score=Object.fromEntries(codes.map(code=>[code,0]));answers.forEach(choice=>score[codes[choice]]++);
+      return Object.entries(score).sort((a,b)=>b[1]-a[1]||codes.indexOf(a[0])-codes.indexOf(b[0]));
+    }
+    function buildResult(){
+      const rank=calculate(),[primary,count]=rank[0],data=types[primary];
+      $('#resultTitle').textContent=data.name;const subtitle=document.createElement('small');subtitle.textContent=data.tag;$('#resultTitle').appendChild(subtitle);
+      $('#resultIntro').textContent=data.intro;$('#environment').textContent=data.environment;
+      const secondary=rank.slice(1).filter(item=>item[1]>0&&item[1]===rank[1][1]);
+      $('#secondaryType').textContent=secondary.length?secondary.map(item=>types[item[0]].name).join(' / '):'本次选择较集中，暂无明显副频。';
+      $('#cities').innerHTML='';data.cities.forEach(city=>{const tag=document.createElement('span');tag.textContent=city;$('#cities').appendChild(tag)});
+      $('#warning').textContent=data.warning;$('#quote').textContent=data.quote;
+      const percent=Math.round(count/questions.length*100);
+      $('#frequencyScore').textContent=count+' / '+questions.length+' 题 · '+percent+'%';$('#resultMeter').style.width=percent+'%';
+      const tied=rank.filter(item=>item[1]===count);
+      $('#rankNote').textContent=tied.length>1?'本次有并列倾向：'+tied.map(item=>types[item[0]].name).join('、')+'。展示顺序不代表优劣；占比仅表示本次选项分布。':'占比仅表示本次选项分布，不代表测量准确率。';
+      $('#saveNotice').textContent=storageAvailable?'本次结果已保存在当前浏览器，可再次打开回看。':'当前打开方式不能保存结果，请截图留存。';
+      show('result');
+    }
+    function restore(){
+      const saved=readSaved();if(!saved)return false;
+      answers=saved.answers.slice();completed=Boolean(saved.completed);
+      index=Number.isInteger(saved.index)?Math.max(0,Math.min(saved.index,answers.length,questions.length-1)):0;
+      if(completed){buildResult();return true}
+      if(answers.length)$('#start span').textContent='继续上次的城市频率测试';
+      return false;
+    }
+    function toast(message){clearTimeout(toastTimer);$('#toast').textContent=message;$('#toast').classList.add('show');toastTimer=setTimeout(()=>$('#toast').classList.remove('show'),2400)}
+    $('#start').addEventListener('click',()=>{if(completed){buildResult();return}if(readSaved()?.completed){restore();return}show('quiz');render()});
+    $('#back').addEventListener('click',()=>{if(completed||index===0)return;index--;persist();render()});
+    $('#next').addEventListener('click',()=>{
+      if(completed||!Number.isInteger(answers[index]))return;
+      if(readSaved()?.completed){restore();return}
+      if(index<questions.length-1){index++;persist();render();window.scrollTo(0,0);return}
+      if(answers.length!==questions.length||!validChoices(answers))return;
+      completed=true;persist();buildResult();
+    });
+    $('#share').addEventListener('click',async()=>{
+      const rank=calculate(),data=types[rank[0][0]];
+      const text='我的城市频率档案：'+data.name+'。\n'+data.quote+'\n城市方向：'+data.cities.join('、')+'。\n趣味自我探索，仅供参考。';
+      try{
+        if(navigator.share){await navigator.share({title:'城市频率档案',text});return}
+        if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(text);toast('结果文字已复制');return}
+      }catch(error){if(error.name==='AbortError')return}
+      $('#shareText').hidden=false;$('#shareText').value=text;$('#shareText').focus();$('#shareText').select();
+      toast('请长按选中并复制，或截图保存结果');
+    });
+    window.addEventListener('storage',event=>{if(event.key===storageKey&&readSaved()?.completed)restore()});
+    try{localStorage.setItem(storageKey+'-check','1');localStorage.removeItem(storageKey+'-check')}catch{storageAvailable=false;$('#storageNotice').textContent='当前打开方式不能保存进度。完成后请截图保存结果。'}
+    if(!restore())show('home');
+  </script>
+</body>
+</html>
